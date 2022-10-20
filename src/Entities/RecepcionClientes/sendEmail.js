@@ -1,4 +1,5 @@
-var email = getFieldValue('11c1a844-3c20-42a3-9417-9a1302c1e8d0');
+if(sessionStorage.rolesId == '049c3968-0c3c-45e7-8798-63aed0be976a'){
+var email = JSON.parse(sessionStorage.LappizUser).Email;
 var subject = `Hotel Campestre Viña le da la bienvenida`;
 var text = 'correo de prueba';
 var baseCuerpo = `<style type="text/css">
@@ -632,3 +633,4 @@ sendEmail(email, subject, text, baseCuerpo).then(function (response) {
 }, function (error) {
   toastr.warning('Ha ocurrido un error al enviar el correo');
 });
+}
