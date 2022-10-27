@@ -1,5 +1,6 @@
 setTimeout(() => {
-  var StringQuery = `UPDATE Reservas_Lappiz_Reserva SET UserFK = '${e.dataItem.Id}'`;
+  debugger
+  var StringQuery = `UPDATE Reservas_Lappiz_Reserva SET UserFK = '${SON.parse(sessionStorage.LappizUser).Id}' WHERE Id = '${e.dataItem.Id}'`;
   execQuery(StringQuery).then(function (response) {
     var dataResult = response[0];
     //imprimir resultado de la consulta
