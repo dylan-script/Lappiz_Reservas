@@ -4,7 +4,6 @@ setTimeout(() => {
   var fi = new Date(e.dataItem.FechaRecepcion)
   console.log(fi.getTime())
 
-
   var ff = new Date(e.dataItem.Fechadeida)
   console.log(ff.getTime())
   var email = e.dataItem.CorreoElectronico;
@@ -17,6 +16,14 @@ setTimeout(() => {
   var cc = [""]
   var bcc = [""]
   var update;
+  if(sessionStorage.Type == 'Juridica'){
+    if(sessionStorage.Option == '0'){
+      
+    }
+    if(sessionStorage.Option == '1'){
+      
+    }
+  }
   if (sessionStorage.Option == '0') {
     update = e.dataItem.Identificacion;
     var StringQuery = `INSERT INTO Reservas_Lappiz_Cliente 
