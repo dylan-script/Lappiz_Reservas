@@ -4,6 +4,7 @@ setTimeout(() => {
   var fi = new Date(e.dataItem.FechaRecepcion)
   console.log(fi.getTime())
 
+
   var ff = new Date(e.dataItem.Fechadeida)
   console.log(ff.getTime())
   var email = e.dataItem.CorreoElectronico;
@@ -16,93 +17,160 @@ setTimeout(() => {
   var cc = [""]
   var bcc = [""]
   var update;
-  if(sessionStorage.Type == 'Juridica'){
-    if(sessionStorage.Option == '0'){
-      
+
+  if (sessionStorage.Type == 'Natural') {
+    if (sessionStorage.Option == '0') {
+      update = e.dataItem.Identificacion;
+      var StringQuery = `INSERT INTO Reservas_Lappiz_Cliente 
+    (Nombre,Apellido,Direccion, Telefono, Celular, Pais, Ciudad, TipodeIdentificacin, Identificacion, CorreoElectronico) 
+    VALUES ('${e.dataItem.Nombre}',
+            '${e.dataItem.Apellido}',
+            '${e.dataItem.Direccion}',
+            '${e.dataItem.Telefono}',
+            '${e.dataItem.Celular}',
+            '${e.dataItem.Pais}',
+            '${e.dataItem.Ciudad}', 
+            '${e.dataItem.TipodeIdentificacin}', 
+            '${e.dataItem.Identificacion}', 
+            '${e.dataItem.CorreoElectronico}')`;
+      execQuery(StringQuery).then(function (response) {
+        var dataResult = response[0];
+        //imprimir resultado de la consulta
+        console.log(dataResult);
+      }, function (error) {
+        console.log(error);
+      });
+
+      message = `Se registró el cliente: ${e.dataItem.Nombre} ${e.dataItem.Apellido} en la base de datos`;
+
+    } else if (sessionStorage.Option == '1') {
+      update = sessionStorage.Identificacion;
+
+      email = sessionStorage.CorreoElectronico;
+      var StringQuery = `UPDATE Reservas_Lappiz_RecepcionClientes
+      SET Nombre = '${sessionStorage.Nombre}', 
+      Apellido = '${sessionStorage.Apellido}', 
+      Celular = '${sessionStorage.Celular}', 
+      Ciudad = '${sessionStorage.Ciudad}',
+      CorreoElectronico = '${sessionStorage.CorreoElectronico}',
+      Direccion = '${sessionStorage.Direccion}',
+      Identificacion = '${sessionStorage.Identificacion}', 
+      Pais = '${sessionStorage.Pais}', 
+      Telefono = '${sessionStorage.Telefono}', 
+      TipodeIdentificacin = '${sessionStorage.TipodeIdentificacin}'
+      WHERE Id = '${e.dataItem.Id}'`;
+      execQuery(StringQuery).then(function (response) {
+        var dataResult = response[0];
+        //imprimir resultado de la consulta
+        console.log(dataResult);
+      }, function (error) {
+        console.log(error);
+      });
+      message = `Recepción registrada al cliente: ${sessionStorage.Nombre} ${sessionStorage.Apellido}`;
     }
-    if(sessionStorage.Option == '1'){
-      
+    debugger
+    setTimeout(() => {
+      var query2 = `SELECT Id FROM Reservas_Lappiz_Cliente WHERE
+      Identificacion = '${update}'`
+      execQuery(query2).then(function (response) {
+        var dataResult = response[0];
+        //imprimir resultado de la consulta
+        console.log(dataResult[0].Id);
+        sessionStorage.ClienteID = dataResult[0].Id;
+        console.log(sessionStorage.ClienteID)
+      }, function (error) {
+        console.log(error);
+      });
+    }, 1000);
+
+    setTimeout(() => {
+      var query3 = `UPDATE Reservas_Lappiz_RecepcionClientes
+    SET ClienteFK = '${sessionStorage.ClienteID}' WHERE Id = '${e.dataItem.Id}'`;
+      execQuery(query3).then(function (response) {
+        var dataResult = response[0];
+        //imprimir resultado de la consulta
+        console.log(dataResult);
+      }, function (error) {
+        console.log(error);
+      });
+    }, 2000);
+  }
+
+  if (sessionStorage.Type == 'Juridica') {
+    if (sessionStorage.Option == '0') {
+      update = e.dataItem.Identificacion;
+      var StringQuery = `INSERT INTO Reservas_Lappiz_Empresas 
+    (RazonSocial,Direccion, Telefono, Celular, Pais, Ciudad, CENit, CorreoElectronico) 
+    VALUES ('${e.dataItem.Empresa}',
+            '${e.dataItem.Direccion}',
+            '${e.dataItem.Telefono}',
+            '${e.dataItem.Celular}',
+            '${e.dataItem.Pais}',
+            '${e.dataItem.Ciudad}', 
+            '${e.dataItem.Identificacion}', 
+            '${e.dataItem.CorreoElectronico}')`;
+      execQuery(StringQuery).then(function (response) {
+        var dataResult = response[0];
+        //imprimir resultado de la consulta
+        console.log(dataResult);
+      }, function (error) {
+        console.log(error);
+      });
+
+      message = `Se registró la empresa: ${e.dataItem.Empresa} en la base de datos`;
+
+    } else if (sessionStorage.Option == '1') {
+      update = sessionStorage.Identificacion;
+
+      email = sessionStorage.CorreoElectronico;
+      var StringQuery = `UPDATE Reservas_Lappiz_RecepcionClientes
+      SET Nombre = '${sessionStorage.Nombre}', 
+      Apellido = '${sessionStorage.Apellido}', 
+      Celular = '${sessionStorage.Celular}', 
+      Ciudad = '${sessionStorage.Ciudad}',
+      CorreoElectronico = '${sessionStorage.CorreoElectronico}',
+      Direccion = '${sessionStorage.Direccion}',
+      Identificacion = '${sessionStorage.Identificacion}', 
+      Pais = '${sessionStorage.Pais}', 
+      Telefono = '${sessionStorage.Telefono}', 
+      TipodeIdentificacin = '${sessionStorage.TipodeIdentificacin}'
+      WHERE Id = '${e.dataItem.Id}'`;
+      execQuery(StringQuery).then(function (response) {
+        var dataResult = response[0];
+        //imprimir resultado de la consulta
+        console.log(dataResult);
+      }, function (error) {
+        console.log(error);
+      });
+      message = `Recepción registrada al cliente: ${sessionStorage.Nombre} ${sessionStorage.Apellido}`;
     }
+    debugger
+    setTimeout(() => {
+      var query2 = `SELECT Id FROM Reservas_Lappiz_Empresas WHERE
+      CENit = '${update}'`
+      execQuery(query2).then(function (response) {
+        var dataResult = response[0];
+        //imprimir resultado de la consulta
+        console.log(dataResult[0].Id);
+        sessionStorage.EmpresaID = dataResult[0].Id;
+        console.log(sessionStorage.EmpresaID)
+      }, function (error) {
+        console.log(error);
+      });
+    }, 1000);
+
+    setTimeout(() => {
+      var query3 = `UPDATE Reservas_Lappiz_RecepcionClientes
+    SET EmpresaFk = '${sessionStorage.EmpresaID}' WHERE Id = '${e.dataItem.Id}'`;
+      execQuery(query3).then(function (response) {
+        var dataResult = response[0];
+        //imprimir resultado de la consulta
+        console.log(dataResult);
+      }, function (error) {
+        console.log(error);
+      });
+    }, 2000);
   }
-  if (sessionStorage.Option == '0') {
-    update = e.dataItem.Identificacion;
-    var StringQuery = `INSERT INTO Reservas_Lappiz_Cliente 
-  (Nombre,Apellido,Direccion, Telefono, Celular, Pais, Ciudad, TipodeIdentificacin, Identificacion, TipoPersona, Empresa, CorreoElectronico) 
-  VALUES ('${e.dataItem.Nombre}',
-          '${e.dataItem.Apellido}',
-          '${e.dataItem.Direccion}',
-          '${e.dataItem.Telefono}',
-          '${e.dataItem.Celular}',
-          '${e.dataItem.Pais}',
-          '${e.dataItem.Ciudad}', 
-          '${e.dataItem.TipodeIdentificacin}', 
-          '${e.dataItem.Identificacion}', 
-          '${e.dataItem.TipoPersona}',
-          '${e.dataItem.Empresa}',
-          '${e.dataItem.CorreoElectronico}')`;
-    execQuery(StringQuery).then(function (response) {
-      var dataResult = response[0];
-      //imprimir resultado de la consulta
-      console.log(dataResult);
-    }, function (error) {
-      console.log(error);
-    });
-
-    message = `Se registró el cliente: ${e.dataItem.Nombre} ${e.dataItem.Apellido} en la base de datos`;
-
-  } else if (sessionStorage.Option == '1') {
-    update = sessionStorage.Identificacion;
-
-    email = sessionStorage.CorreoElectronico;
-    var StringQuery = `UPDATE Reservas_Lappiz_RecepcionClientes
-    SET Nombre = '${sessionStorage.Nombre}', 
-    Apellido = '${sessionStorage.Apellido}', 
-    Celular = '${sessionStorage.Celular}', 
-    Ciudad = '${sessionStorage.Ciudad}',
-    CorreoElectronico = '${sessionStorage.CorreoElectronico}',
-    Direccion = '${sessionStorage.Direccion}',
-    Empresa = '${sessionStorage.Empresa}', 
-    Identificacion = '${sessionStorage.Identificacion}', 
-    Pais = '${sessionStorage.Pais}', 
-    Telefono = '${sessionStorage.Telefono}', 
-    TipoPersona = '${sessionStorage.TipoPersona}',
-    TipodeIdentificacin = '${sessionStorage.TipodeIdentificacin}'
-    WHERE Id = '${e.dataItem.Id}'`;
-    execQuery(StringQuery).then(function (response) {
-      var dataResult = response[0];
-      //imprimir resultado de la consulta
-      console.log(dataResult);
-    }, function (error) {
-      console.log(error);
-    });
-    message = `Recepción registrada al cliente: ${sessionStorage.Nombre} ${sessionStorage.Apellido}`;
-  }
-  debugger
-  setTimeout(() => {
-    var query2 = `SELECT Id FROM Reservas_Lappiz_Cliente WHERE
-    Identificacion = '${update}'`
-    execQuery(query2).then(function (response) {
-      var dataResult = response[0];
-      //imprimir resultado de la consulta
-      console.log(dataResult[0].Id);
-      sessionStorage.ClienteID = dataResult[0].Id;
-      console.log(sessionStorage.ClienteID)
-    }, function (error) {
-      console.log(error);
-    });
-  }, 1000);
-
-  setTimeout(() => {
-    var query3 = `UPDATE Reservas_Lappiz_RecepcionClientes
-  SET ClienteFK = '${sessionStorage.ClienteID}' WHERE Id = '${e.dataItem.Id}'`;
-    execQuery(query3).then(function (response) {
-      var dataResult = response[0];
-      //imprimir resultado de la consulta
-      console.log(dataResult);
-    }, function (error) {
-      console.log(error);
-    });
-  }, 2000);
 
   sendEmail(email, subject, text, HTML, attachments, cc, bcc).then(function (response) {
     toastr.info(`Registro de la recepción enviada al correo: ${email}`);
