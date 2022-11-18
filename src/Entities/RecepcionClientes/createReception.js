@@ -4,7 +4,6 @@ setTimeout(() => {
   var fi = new Date(e.dataItem.FechaRecepcion)
   console.log(fi.getTime())
 
-
   var ff = new Date(e.dataItem.Fechadeida)
   console.log(ff.getTime())
   var email = e.dataItem.CorreoElectronico;

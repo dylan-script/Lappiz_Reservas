@@ -5,7 +5,6 @@ setTimeout(() => {
   var appViewId = getAppViewId();
   console.log(appViewId);
   if (appViewId == 'da587085-4398-4565-96e7-19114eba4a9b') {
-    var campoId = 'c8cee7d9-4907-4c16-bf4a-566a300bb92f'
     visibilityParams(false, false, false)
 
     if (e.isNew) {
@@ -46,9 +45,16 @@ setTimeout(() => {
       });
 
     } else {
-      var viewSection = '0977cfba-62cf-49cf-87eb-daa8f7286b10';
-      visibilitySection(viewSection, false);
-      visibilitySection(registerSection, true);
+      //isplayParams('none', 'none', 'none', 'none')
+      visibilityParams(true, false, false)
+      if(e.dataItem.ClienteFK == null){
+        changeType('Natural')
+      }
+      if(e.dataItem.EmpresasFk == null){
+        changeType('Juridica')
+      }
+      requireFields(1)
+      visibilityFields()
     }
   }
   /**
