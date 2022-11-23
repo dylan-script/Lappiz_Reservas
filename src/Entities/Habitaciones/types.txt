@@ -1,0 +1,17 @@
+Tipos de Habitaciones:
+Sencillas,
+Estándar,
+Familiares,
+Con aire acondicionado y minibar,
+Suite Con aire acondicionado y minibar,
+Habitación Suite Deluxe con aire acondicionado y minibar,
+Suite Temáticas,
+Suite Casa del Árbol,
+Habitaciones Busetas,
+Habitaciones con Minibar
+
+Tipos de Camarotes:
+0,camarote (6 Personas), camarote. (4 personas),Camarote - abajo cama doble - arriba  cama sencilla 
+
+0,Camarote sencillo, 
+Camarote - abajo cama doble - arriba  cama sencilla

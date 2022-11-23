@@ -1,0 +1,7 @@
+Diponibilidad > Disponible,No Disponible,En mantenimiento,No Disponible y Limpia,Requiere Limpieza
+
+Amarillo: Habitaciones sucias, que están pendientes por aseo. 
+Rojo: Habitaciones Ocupadas. 
+Verde: Habitaciones Disponibles (Listas en aseo y están para vender)
+Azul: Ocupadas Limpias
+GRIS: Mantenimiento
