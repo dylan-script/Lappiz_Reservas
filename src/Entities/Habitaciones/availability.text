@@ -5,3 +5,20 @@ Rojo: Habitaciones Ocupadas.
 Verde: Habitaciones Disponibles (Listas en aseo y están para vender)
 Azul: Ocupadas Limpias
 GRIS: Mantenimiento
+
+Filtros 
+
+//Habitaciones Disponibles
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_Habitacion?$filter=Reservas_Lappiz_Habitacion.OData eq 'Verde'
+
+//Habitaciones No Disponibles
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_Habitacion?$filter=Reservas_Lappiz_Habitacion.OData eq 'Rojo'
+
+//Habitaciones En mantenimiento
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_Habitacion?$filter=Reservas_Lappiz_Habitacion.OData eq 'Gris'
+
+//Habitaciones No Disponibles y Limpias
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_Habitacion?$filter=Reservas_Lappiz_Habitacion.OData eq 'Azul'
+
+//Habitaciones que Requieren Limpieza
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_Habitacion?$filter=Reservas_Lappiz_Habitacion.OData eq 'Amarillo'
