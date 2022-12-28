@@ -1,7 +1,7 @@
-function getData() {
+function getData(entity) {
   debugger
   //console.log(e.dataItem)
-  if (sessionStorage.Type == 'Natural') {
+  if (entity == 'client') {
     //Identificación
     sessionStorage.Identificacion = e.dataItem.Identificacion;
     console.log(sessionStorage.Identificacion);
@@ -16,30 +16,23 @@ function getData() {
     console.log(sessionStorage.Apellido);
   }
 
-  if (sessionStorage.Type == 'Juridica') {
+  if (entity == 'enterprise') {
     //NIT
-    sessionStorage.CENit = e.dataItem.CENit;
-    console.log(sessionStorage.CENit);
+    sessionStorage.Nit = e.dataItem.Nit;
+    console.log(sessionStorage.Nit);
     //Razón Social
     sessionStorage.RazonSocial = e.dataItem.RazonSocial;
     console.log(sessionStorage.RazonSocial);
   }
-
-  //Número Celular
-  sessionStorage.Celular = e.dataItem.Celular;
-  console.log(sessionStorage.Celular);
-  //Ciudad de Residencia
-  sessionStorage.Ciudad = e.dataItem.Ciudad;
-  console.log(sessionStorage.Ciudad);
   //Email
   sessionStorage.CorreoElectronico = e.dataItem.CorreoElectronico;
   console.log(sessionStorage.CorreoElectronico);
   //Dirección de Residencia
   sessionStorage.Direccion = e.dataItem.Direccion;
   console.log(sessionStorage.Direccion);
-  //País de Residencia
-  sessionStorage.Pais = e.dataItem.Pais;
-  console.log(sessionStorage.Pais);
+  //Lugar de Residencia
+  sessionStorage.Geolocalizacion = e.dataItem.Geolocalizacion;
+  console.log(sessionStorage.Geolocalizacion);
   //Número Telefónico
   sessionStorage.Telefono = e.dataItem.Telefono;
   console.log(sessionStorage.Telefono);
