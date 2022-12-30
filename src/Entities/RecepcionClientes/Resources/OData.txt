@@ -1,0 +1,9 @@
+Estados de la recepción:
+CheckIn,CheckOut,Pendiente
+
+
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_RecepcionClientes?$filter=Reservas_Lappiz_RecepcionClientes.Estado eq 'CheckIn'&$orderby=FechaRecepcion desc
+
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_RecepcionClientes?$filter=Reservas_Lappiz_RecepcionClientes.Estado eq 'CheckOut'&$orderby=FechaRecepcion desc
+
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_RecepcionClientes?$filter=Reservas_Lappiz_RecepcionClientes.Estado eq 'Pendiente'&$orderby=FechaRecepcion desc
