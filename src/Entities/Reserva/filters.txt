@@ -1,0 +1,1 @@
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_Reserva?$filter=Reservas_Lappiz_Reserva.UserFK eq '#JSON.parse(sessionStorage.LappizUser).Id#'

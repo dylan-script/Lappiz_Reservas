@@ -1,0 +1,1 @@
+#UrlBase#/Reservas_Lappiz.api/api/Reservas_Lappiz_Habitacion?$filter=Reservas_Lappiz_Habitacion.Disponibilidad eq 'Disponible'&$orderby=TipodeHabitacion desc 
